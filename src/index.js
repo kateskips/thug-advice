@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let adviceBtn = document.querySelector(".waves-effect")
+  let adviceBtn = document.querySelector("#gotchu")
+
   let adviceCollection = document.querySelector(".advice-collection")
   
   
