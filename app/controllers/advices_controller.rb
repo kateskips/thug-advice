@@ -1,38 +1,54 @@
 class AdvicesController < ApplicationController
-    def index
-    render json: Advice.all
+    def index 
+      advices = Advice.all
+      render json: advices
     end
 
     def new
-    advice = Advice.new
+      advice = Advice.new
     end
+
+    #def create 
+    #  advice = Advice.create(advice_params)
+    #  if advice.valid?
+    #    advice.save
+    #    render json: { "succeeded": true }
+    #  else
+    #    render json: { "succeeded": false }
+    #  end
+    #end
 
     def create
-    render json: Advice.new(advice_params)
-    if advice.valid?
-        advice.save
-    else
-        render json: new
+      advice = Advice.new(advice_params) 
+      pry
+      if advice.save  
+        render json: { status: 'SUCCESS'}, status: :ok
+      else
+        render json: { status: 'ERROR'}, status: :unprocessable_entity
       end
     end
-
+    
+  
     def show
-    render json: Advice.find(params[:id])
+      advice = Advice.find_by(id: params[:id])
+      render json: {id: advice.id, quote: advice.quote }
     end
 
     def update
-    render json: advice.update(advice_params)
+      render json: advice.update(advice_params)
     end
 
     def destroy
-    render json: advice.destroy
+      render json: advice.destroy
     end
 
-    private
+   private
 
-    def advice_params
-        params.require(:advice).permit(:quote, :user_id)
+  
+   def advice_params
+      params.require(:advice).permit(:quote, :user_id)
     end
-end
 
+  end
+    
 
