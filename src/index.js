@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-type': 'application/json',
         },
         body: JSON.stringify({
-          quote: quote,
-          user_id: 5
+      quote: quote
         })
       }).then(response => response.json())
-        .then((responseJson) => console.log(responseJson))
+    alert('You just submitted!')
+         //.then((responseJson) => console.log(responseJson))
     });
   }
 })
