@@ -19,8 +19,7 @@ class AdvicesController < ApplicationController
     #end
 
     def create
-      advice = Advice.new(advice_params) 
-      pry
+      advice = Advice.new(advice_params)
       if advice.save  
         render json: { status: 'SUCCESS'}, status: :ok
       else
