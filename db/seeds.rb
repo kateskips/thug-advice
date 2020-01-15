@@ -6,12 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user_a = User.create(name: "Vina")
-user_b = User.create(name: "Roy")
-user_c = User.create(name: "Anna")
-user_d = User.create(name: "Adam")
+#user_a = User.create(name: "Vina")
+#user_b = User.create(name: "Roy")
+#user_c = User.create(name: "Anna")
+#user_d = User.create(name: "Adam")
 
-advice_a = Advice.create(quote: "Don't stand for Bullshit.", user: user_d)
-advice_b = Advice.create(quote: "You have the choice to do anything.", user: user_c)
-advice_c = Advice.create(quote: "Be the best you can be bitch.", user: user_a)
-advice_d = Advice.create(quote: "Be humble", user: user_b)
+#advice_a = Advice.create(quote: "Don't stand for Bullshit.", user: user_d)
+#advice_b = Advice.create(quote: "You have the choice to do anything.", user: user_c)
+#advice_c = Advice.create(quote: "Be the best you can be bitch.", user: user_a)
+#advice_d = Advice.create(quote: "Be humble", user: user_b)
+life = User.create(name_type: "life")
+love = User.create(name_type: "love")
+work = User.create(name_type: "work")
+friend = User.create(name_type: "friend")
+
+advice_1 = Advice.create(quote: "Sometimes you have to push hard and stay tough", user: life )
+advice_2 = Advice.create(quote: "Train Harder. Be Badass.", user: work)
+
+
+
+
+
+
+
+
