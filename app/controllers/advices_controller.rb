@@ -8,29 +8,19 @@ class AdvicesController < ApplicationController
       advice = Advice.new
     end
 
-    #def create 
-    #  advice = Advice.create(advice_params)
-    #  if advice.valid?
-    #    advice.save
-    #    render json: { "succeeded": true }
-    #  else
-    #    render json: { "succeeded": false }
-    #  end
-    #end
-
     def create
       advice = Advice.new(advice_params)
       if advice.save  
-        render json: { status: 'SUCCESS'}, status: :ok
+        render json: {status: 'Success', message: 'Entry Complete'}, status: :ok
       else
-        render json: { status: 'ERROR'}, status: :unprocessable_entity
+        render json: {status: 'Error', message: 'Entry Not Complete'}, status: :unprocessable_entity
       end
     end
     
   
     def show
       advice = Advice.find_by(id: params[:id])
-      render json: {id: advice.id, quote: advice.quote }
+      render json: {id: advice.id, quote: advice.quote, user_id:advice.user.name_type}
     end
 
     def update
