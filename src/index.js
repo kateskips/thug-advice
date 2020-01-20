@@ -4,10 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
   let submitBtn = document.querySelector('#submit');
   let adviceForm = document.querySelector('#adviceForm');
   let saveAdvices = null;
+  let saveAllAdvices = null;
   let saveTypes = null;
   const typesRow = document.querySelector('#types');
   let typeCollection = document.querySelector('.type-collection');
   let currentType = null;
+  
+  fetch("http://localhost:3000/advices")
+    .then(resp => resp.json())
+    .then(arrayOfQuotes => {
+      saveAllAdvices = arrayOfQuotes;
+    })
+  
+  function adviceDom(advice) {
+    const adviceDiv = document.createElement("div");
+    if (advice == null) {
+      {
+        const c = document.createElement("h3");
+        c.appendChild(document.createTextNode("Thug cannot help you"));
+        adviceDiv.appendChild(c);
+      }
+      {
+        const c = document.createElement("p");
+        c.appendChild(document.createTextNode("Got no advice, dawg."));
+        adviceDiv.appendChild(c);
+      }
+    } else {
+      adviceDiv.setAttribute("class", "advice-card")
+      adviceDiv.innerHTML = `<h1>${advice.quote}</h1>
+      <h3>Advice for <u>${advice.user.name_type}</u></h3>`;
+    }
+    return adviceDiv;
+  }
   
   if (typesRow != null) {
     fetch('http://localhost:3000/users')
@@ -25,8 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch(`http://localhost:3000/advices?user_id=${type.id}`)
               .then(resp => resp.json())
               .then(arrayOfQuotes => {
-                saveAdvices = arrayOfQuotes;
-              })
+                if (arrayOfQuotes.length == 0) {
+                  typeCollection.appendChild(adviceDom(null));
+                }
+                for (const advice of arrayOfQuotes) {
+                  typeCollection.appendChild(adviceDom(advice));
+                }
+              }) 
           })
           typesRow.appendChild(b);
         }
@@ -36,30 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (adviceBtn != null) {
     adviceBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (saveAdvices == null)
+      if (saveAllAdvices == null)
         return;
-      if (saveAdvices.length == 0) {
-        adviceCollection.innerHTML = '';
-        {
-          const c = document.createElement("h3");
-          c.appendChild(document.createTextNode("Thug cannot help you"));
-          adviceCollection.appendChild(c);
-        }
-        {
-          const c = document.createElement("p");
-          c.appendChild(document.createTextNode("Got no advice, dawg."));
-          adviceCollection.appendChild(c);
-        }
+      adviceCollection.innerHTML = '';
+      let advice;
+      if (saveAllAdvices.length == 0) {
+        advice = null;
       } else {
-        let advice = saveAdvices[Math.floor(Math.random() * saveAdvices.length)]
-        adviceCollection.innerHTML =
-          `<div class="advice-card">
-    <h1>${advice.quote}</h1>
-    <h3>Advice for <u>${advice.user.name_type}</u></h3>
-    </div>`;
+        advice = saveAllAdvices[Math.floor(Math.random() * saveAllAdvices.length)]
       }
+      adviceCollection.appendChild(adviceDom(advice));
     })
- 
+
     if (submitBtn != null) {
       submitBtn.addEventListener('submit', (event) => {
         event.preventDefault();
