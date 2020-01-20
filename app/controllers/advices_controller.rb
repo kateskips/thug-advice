@@ -1,6 +1,10 @@
 class AdvicesController < ApplicationController
-    def index 
-      advices = Advice.all
+    def index
+      if params.key?(:user_id) then
+        advices = Advice.where(user_id: params[:user_id]).all
+      else
+        advices = Advice.all
+      end
       render json: advices
     end
 
