@@ -134,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
           radioLabel.appendChild(radioButton);
           span.appendChild(document.createTextNode(type.name_type));
           radioLabel.appendChild(span);
-          adviceForm.appendChild(radioLabel);
         }
       })
     submitBtn.addEventListener('submit', (event) => {
