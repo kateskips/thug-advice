@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
           radioButton.setAttribute("name", "create-advice-type");
           radioButton.setAttribute("class", "with-gap");
           radioButton.setAttribute("type", "radio");
+          radioButton.setAttribute("value", type.id);
           adviceForm.appendChild(p);
           p.appendChild(radioLabel);
           radioLabel.appendChild(radioButton);
