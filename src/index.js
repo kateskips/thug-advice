@@ -100,9 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (adviceForm != null) {
-    const submitBtn = document.querySelector('#submit');
-    console.assert(submitBtn != null, "no submit button yet do have advice");
-    console.log("asdf");
+    const submitBtn = document.createElement("button");
+    {
+      submitBtn.setAttribute("class", "btn waves-effect waves-light");
+      submitBtn.setAttribute("id", "submit");
+      submitBtn.setAttribute("type", "submit");
+      submitBtn.appendChild(document.createTextNode("submit"));
+    }
+    {
+      const textLabel = document.createElement("label");
+      const textInput = document.createElement("input");
+      textInput.setAttribute("type", "text");
+      textInput.setAttribute("name", "quote");
+      textInput.setAttribute("id", "quote");
+      textLabel.appendChild(document.createTextNode("Advice"));
+      textLabel.appendChild(textInput);
+      adviceForm.appendChild(textLabel);
+    }
     fetch("http://localhost:3000/users")
       .then(resp => resp.json())
       .then(arrayOfTypes => {
