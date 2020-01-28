@@ -136,7 +136,19 @@ document.addEventListener('DOMContentLoaded', () => {
           radioLabel.appendChild(span);
         }
         adviceForm.appendChild(submitBtn);
+    adviceForm.addEventListener('submit', (event) => {
       event.preventDefault();
+      const adviceFormData = new FormData(adviceForm);
+      const quoteVal = adviceFormData.get('quote');
+      if (quoteVal == '') {
+        alert("quote cannot be empty. C'mon dawg nobody wants to hear that.")
+        return
+      }
+      const typeVal = adviceFormData.get('create-advice-type');
+      if (typeVal == null) {
+        alert("Need to pick a type")
+        return
+      }
       fetch('http://localhost:3000/advices', {
         method: 'POST',
         headers: {
