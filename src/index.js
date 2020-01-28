@@ -136,6 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
           radioLabel.appendChild(span);
         }
         adviceForm.appendChild(submitBtn);
+      });
+
     adviceForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const adviceFormData = new FormData(adviceForm);
@@ -156,8 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-type': 'application/json',
         },
         body: JSON.stringify({
-          'quote':
-            'user_id'
+          quote: quoteVal,
+          user_id: typeVal,
         })
       }).then(response => response.json())
         .then((responseJson) => {
