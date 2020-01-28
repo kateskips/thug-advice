@@ -135,8 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
           span.appendChild(document.createTextNode(type.name_type));
           radioLabel.appendChild(span);
         }
-      })
-    submitBtn.addEventListener('submit', (event) => {
+        adviceForm.appendChild(submitBtn);
       event.preventDefault();
       fetch('http://localhost:3000/advices', {
         method: 'POST',
