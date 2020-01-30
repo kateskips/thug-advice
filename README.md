@@ -1,24 +1,54 @@
-# README
+Thug Advice
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Thug Advice was created for those that want advice with no sugar on top.
+A platform for those that want to share advice for those in need. Advice categories such as: Life, Love, Work, Friends.
 
-Things you may want to cover:
+------------------
 
-* Ruby version
+Getting Started
 
-* System dependencies
+To get started fork the repo
 
-* Configuration
+------------------
 
-* Database creation
+Prerequisites
 
-* Database initialization
+After you fork the repo, open the file.
+In the terminal, bundle install for the latest updates.
+If you don't have 'live server' installed, install it now so you can launch the development from your IDE.
 
-* How to run the test suite
+------------------
 
-* Services (job queues, cache servers, search engines, etc.)
+Deployment
 
-* Deployment instructions
+Once that is done, 
+In terminal, type in rails s/server 
+Then launch live server from your IDE.
 
-* ...
+------------------
+
+Running the tests
+
+Type in rails console/c to check your backend data
+Example: Rails c enables you to look into your backend using SQLITE.
+Once you are loading the development environment, you can type things like 
+Advice.all (This let's you see an array of all the advices in that table)
+
+------------------
+
+Built With
+Back-end
+Rails - The Web Framework 
+
+Front-end
+HTML/CSS - Design and Built
+JavaScript - Behaviors/Interactive 
+
+------------------
+
+Authors
+Kate Follett
+
+
+
+
