@@ -4,11 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const adviceForm = document.querySelector('#adviceForm');
   const typesRow = document.querySelector('#types');
   const typeCollection = document.querySelector('.type-collection');
+  const sorting = document.querySelector('#sorting')
 
   let saveAdvices = null;
   let saveAllAdvices = null;
   let saveTypes = null;
   let currentType = null;
+  
+
+//  sorting.addEventListener('click', (event) => {
+    //console.log('hell yeah');
+  //  fetch("http://localhost:3000/advices")
+  //    .then(resp => resp.json())
+  //    .then(quotes => {
+  //      console.log(quotes)
+  //    }) 
+//  }) 
+
+
 
   // fetch all the advice from the backend, regardless of category.
   // Returns a promise.
