@@ -49,15 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
+  // fetch all the users from the backend
+  // Returns a promise.
   if (typesRow != null) {
     fetch('http://localhost:3000/users')
+      // parse the response if/when it arrives as json.
       .then(resp => resp.json())
+      // stores it in a variable called arrayOfTypes
       .then(arrayOfTypes => {
+        //which is then transfered in a for/of loop
         for (const type of arrayOfTypes) {
+          // This involves the DOM which we create data types -- in this case creating an element name 'button'
           const b = document.createElement("button")
           b.setAttribute("class", "waves-effect waves-light btn-large");
           b.appendChild(document.createTextNode(type.name_type));
+          //After setting the button's attributes, we appendChild it onto the DOM with a text which goes into the backend table of name_type
           b.addEventListener('click', (e) => {
             e.preventDefault();
             typeCollection.innerHTML =
