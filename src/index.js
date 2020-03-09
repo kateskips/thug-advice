@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // stores it in variable called arrayOfQuotes
     .then(arrayOfQuotes => {
       // when then is transfered into saveAllAdvices, which is null(empty)
-      saveAllAdvices = arrayOfQuotes;
+      saveAllAdvices = arrayOfQuotes.map(x => new Advice(x));
     })
 
   //created function called noAdviceDom 
