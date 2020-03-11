@@ -21,34 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
       saveAllAdvices = arrayOfQuotes.map(x => new Advice(x));
     })
 
-  //created function called noAdviceDom 
-  function noAdviceDom() {
-    //Created an instance of the element for the specified tag + created a variable noAdviceDiv
-    const noAdviceDiv = document.createElement("div");
-    // creating a block with curly brackets(this limits the scope)
-    // In this case, create an element and appendchild to that element with a TEXT.  
-    {
-      const c = document.createElement("h1");
-      c.appendChild(document.createTextNode("Thug cannot help you."));
-      noAdviceDiv.appendChild(c);
-    }
-    {
-      const c = document.createElement("h3");
-      c.appendChild(document.createTextNode("Got no advice, dawg."));
-      noAdviceDiv.appendChild(c);
-    }
-    return noAdviceDiv;
-  }
-
-  // created a function called adviceDom. The same as noAdviceDom but with this it takes in advice in the parameters.
-  function adviceDom(advice) {
-    const adviceDiv = document.createElement("div");
-    adviceDiv.setAttribute("class", "advice-card");
-    adviceDiv.innerHTML = `<h1>${advice.quote}</h1>`;
-    return adviceDiv;
-  }
-
-
   // fetch all the users from the backend
   // Returns a promise.
   if (typesRow != null) {
@@ -73,10 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
               .then(resp => resp.json())
               .then(arrayOfQuotes => {
                 if (arrayOfQuotes.length == 0) {
-                  typeCollection.appendChild(noAdviceDom());
+                  typeCollection.appendChild(Advice.noAdviceDom());
                 }
-                for (const advice of arrayOfQuotes) {
-                  typeCollection.appendChild(adviceDom(advice));
+                for (const advice of arrayOfQuotes.map(x => new Advice(x))) {
+                  typeCollection.appendChild(advice.renderDom());
                 }
               })
           })
@@ -93,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
       adviceCollection.innerHTML = '';
       let card;
       if (saveAllAdvices.length == 0) {
-        card = noAdviceDom();
+        card = Advice.noAdviceDom();
       } else {
         const advice = saveAllAdvices[Math.floor(Math.random() * saveAllAdvices.length)];
-        card = adviceDom(advice);
+        card = advice.renderDom();
         const h3 = document.createElement("h3");
         h3.innerHTML = `Advice for <u>${advice.user.name_type}</u>`;
         card.appendChild(h3);
