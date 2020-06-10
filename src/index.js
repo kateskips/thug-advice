@@ -5,21 +5,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const typesRow = document.querySelector('#types');
   const typeCollection = document.querySelector('.type-collection');
   const sorting = document.querySelector('#sorting')
+  const sortedCollection = document.querySelector(".sorted-collection")
 
   let saveAdvices = null;
   let saveAllAdvices = null;
   let saveTypes = null;
   let currentType = null;
   
-
-//  sorting.addEventListener('click', (event) => {
+  // temporary coding exercise
+  sorting.addEventListener('click', (event) => {
     //console.log('hell yeah');
-  //  fetch("http://localhost:3000/advices")
-  //    .then(resp => resp.json())
-  //    .then(quotes => {
-  //      console.log(quotes)
-  //    }) 
-//  }) 
+    fetch("http://localhost:3000/advices")
+      .then(resp => resp.json())
+      .then(quotes => {
+        quotes = quotes.map(x => new Advice(x))
+        quotes.sort((a, b) => {
+          var quoteA = a.quote.toUpperCase(); // ignore upper and lowercase
+          var quoteB = b.quote.toUpperCase(); // ignore upper and lowercase
+          if (quoteA < quoteB) {
+            return -1;
+          }
+          if (quoteA > quoteB) {
+            return 1;
+          }
+          // names must be equal
+          return 0;
+        });
+        // console.log(quotes);
+        for (const quote of quotes) {
+          sortedCollection.innerHTML +=
+            `<div class="sorting-card">
+          <h1>${quote.quote}</h1></div>`;
+          console.log(quote);
+        }
+      })
+  }) 
+
 
 
 
@@ -62,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 for (const advice of arrayOfQuotes.map(x => new Advice(x))) {
                   typeCollection.appendChild(advice.renderDom());
+                  console.log(advice.renderDom())
                 }
               })
           })
