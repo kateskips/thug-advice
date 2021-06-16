@@ -1,4 +1,4 @@
-class AdvicesController < ApplicationController
+class AdvicesController < ApplicationController::API
     def index
       if params.key?(:user_id) then
         advices = Advice.where(user_id: params[:user_id]).all

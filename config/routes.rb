@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "application#index"
   # get '/advices' => 'advices#index'
   # get '/advices/:id' => 'advices#show'
   # post '/advices' => 'advices#create'
