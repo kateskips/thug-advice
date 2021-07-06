@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // fetch all the advice from the backend, regardless of category.
   // Returns a promise.
-  fetch("http://localhost:3000/advices")
+  fetch("/advices")
     // parse the response if/when it arrives as json.
     .then(resp => resp.json())
     // stores it in variable called arrayOfQuotes
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // fetch all the users from the backend
   // Returns a promise.
   if (typesRow != null) {
-    fetch('http://localhost:3000/users')
+    fetch('/users')
       // parse the response if/when it arrives as json.
       .then(resp => resp.json())
       // stores it in a variable called arrayOfTypes
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             typeCollection.innerHTML =
               `<div class="type-card">
               <h1><u>${type.name_type} Advices</u></h1></div>`;
-            fetch(`http://localhost:3000/advices?user_id=${type.id}`)
+            fetch(`/advices?user_id=${type.id}`)
               .then(resp => resp.json())
               .then(arrayOfQuotes => {
                 if (arrayOfQuotes.length == 0) {
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       textLabel.appendChild(textInput);
       adviceForm.appendChild(textLabel);
     }
-    fetch("http://localhost:3000/users")
+    fetch("/users")
       .then(resp => resp.json())
       .then(arrayOfTypes => {
         for (const type of arrayOfTypes) {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Need to pick a type")
         return
       }
-      fetch('http://localhost:3000/advices', {
+      fetch('/advices', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
