@@ -1,4 +1,4 @@
-class Advice {
+export class Advice {
   constructor(adviceDataObj) {
     this.id = adviceDataObj.id
     this.quote = adviceDataObj.quote
