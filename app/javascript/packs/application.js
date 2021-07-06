@@ -17,6 +17,9 @@
 
 console.log('Hello World from Webpacker')
 
+import { Advice } from './advice.js';
+import { User } from './user.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const adviceBtn = document.querySelector("#gotchu");
   const adviceCollection = document.querySelector(".advice-collection");
