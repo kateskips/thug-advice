@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+    background-image: url("https://www.pixeden.com/media/k2/galleries/165/002-subtle-light-pattern-background-texture-vol5.jpg");
+
+}
+
+h1 {
+    font-family: 'Bebas Neue',
+    cursive;
+    font-size: 120px;
+}
+
+h2 {
+    font-family: 'Bebas Neue',
+    cursive;
+    font-size: 75px;
+}
+
+h3 {
+    font-family: 'Bebas Neue',
+    cursive;
+    font-size: 50px;
+
+}
+
+h5 {
+    font-family: 'Montserrat',
+    sans-serif;
+    font-size: 15px;
+
+}
